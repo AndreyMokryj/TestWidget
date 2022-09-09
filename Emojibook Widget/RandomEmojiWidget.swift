@@ -8,7 +8,7 @@
 import WidgetKit
 import SwiftUI
 
-struct Provider: TimelineProvider {
+struct RandomEmojiWidgetProvider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
         SimpleEntry(date: Date(), emojiDetails: EmojiProvider.random())
     }
@@ -39,25 +39,24 @@ struct SimpleEntry: TimelineEntry {
     public let emojiDetails: EmojiDetails
 }
 
-struct Emojibook_WidgetEntryView : View {
-    var entry: Provider.Entry
+struct RandomEmojiWidgetEntryView : View {
+    var entry: RandomEmojiWidgetProvider.Entry
 
     var body: some View {
         EmojiWidgetView(emojiDetails: entry.emojiDetails)
     }
 }
 
-@main
-struct Emojibook_Widget: Widget {
-    private let kind: String = "Emojibook_Widget"
+struct RandomEmojiWidget: Widget {
+    private let kind: String = "RandomEmojiWidget"
 
     var body: some WidgetConfiguration {
         StaticConfiguration(
           kind: kind,
-          provider: Provider()
+          provider: RandomEmojiWidgetProvider()
 //          placeholder: PlaceholderView()
         ) { entry in
-          Emojibook_WidgetEntryView(entry: entry)
+            RandomEmojiWidgetEntryView(entry: entry)
         }
         .configurationDisplayName("Random Emoji")
         .description("Display a widget with an emoji that is updated randomly.")
@@ -65,9 +64,9 @@ struct Emojibook_Widget: Widget {
     }
 }
 
-struct Emojibook_Widget_Previews: PreviewProvider {
+struct RandomEmojiWidget_Previews: PreviewProvider {
     static var previews: some View {
-        Emojibook_WidgetEntryView(entry: SimpleEntry(date: Date(), emojiDetails: EmojiProvider.random()))
+        RandomEmojiWidgetEntryView(entry: SimpleEntry(date: Date(), emojiDetails: EmojiProvider.random()))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }
