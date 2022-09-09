@@ -61,7 +61,7 @@ struct Emojibook_Widget: Widget {
         }
         .configurationDisplayName("Random Emoji")
         .description("Display a widget with an emoji that is updated randomly.")
-        .supportedFamilies([.systemSmall])
+        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
 }
 
