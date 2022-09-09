@@ -61,20 +61,21 @@ struct MediumEmojiWidgetView: View {
 
   var body: some View {
     ZStack {
-      Color(UIColor.systemIndigo)
-      HStack {
-        Text(emojiDetails.emoji)
-          .font(.system(size: 56))
-          .padding()
-        VStack(alignment: .leading) {
-          Text(emojiDetails.name)
-            .font(.headline)
-          Text(emojiDetails.description)
+        Color(UIColor.systemIndigo)
+        HStack {
+            Text(emojiDetails.emoji)
+              .font(.system(size: 56))
+              .padding()
+            VStack(alignment: .leading) {
+              Text(emojiDetails.name)
+                .font(.headline)
+              Text(emojiDetails.description)
+            }
+            .foregroundColor(.white)
+            .padding([.top, .bottom, .trailing])
         }
-        .foregroundColor(.white)
-        .padding([.top, .bottom, .trailing])
-      }
     }
+    .widgetURL(emojiDetails.url)
   }
 }
 
@@ -98,5 +99,6 @@ struct LargeEmojiWidgetView: View {
       .multilineTextAlignment(.center)
       .padding()
     }
+    .widgetURL(emojiDetails.url)
   }
 }
